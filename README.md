@@ -40,7 +40,7 @@ Este projeto é um **Gerenciador de Senhas** que permite ao usuário adicionar, 
 3. **Inicie o aplicativo**:
 
     ```bash
-    expo start
+    npx expo start e escolhar "a"=android e "w" web
     ```
 
 ## Como Usar
