@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Input } from './src/components/Input';
+import { Input } from './src/components/screens';
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Titulo } from './src/Texto/Titulo';

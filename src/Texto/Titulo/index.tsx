@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import {styles} from "./styles";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/screens";
 
 export function Titulo(){
    return( <View style={styles.container}>
