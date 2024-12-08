@@ -1,4 +1,3 @@
-// src/screens/login/styles.tsx
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -13,7 +12,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 20,
-    color:'#4B3CD6',
+    color: '#4B3CD6',
   },
   input: {
     width: '90%',
@@ -46,17 +45,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 8,
-    
   },
+ 
   checkboxLabel: {
     marginLeft: 2,
     fontSize: 14,
   },
-  
   link: {
     color: '#4B3CD6',
     marginTop: 20,
   },
+  buttonContainer: {
+  
+  },
+  
 });
 
 export default styles;

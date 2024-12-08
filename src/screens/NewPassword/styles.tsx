@@ -1,4 +1,4 @@
-// src/screens/newPassword/styles.tsx
+// src/screens/newPassword/styles.ts
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -7,7 +7,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  saveButton: {
+    width:150,
+  },
+  cancelButton: {
+    width:150,
+    marginLeft: 5,
+  },
 });
 
 export default styles;
-

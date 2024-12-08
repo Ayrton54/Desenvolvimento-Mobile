@@ -7,6 +7,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
   },
+  
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  editButton: {
+    width:150,
+  },
+  deleteButton: {
+    width:150,
+    marginLeft: 5,
+  },
 });
 
 export default styles;

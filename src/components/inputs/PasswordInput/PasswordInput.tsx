@@ -1,6 +1,5 @@
-// src/components/PasswordInput.tsx
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 
@@ -8,9 +7,10 @@ type PasswordInputProps = {
   placeholder?: string;
   value?: string;
   onChangeText?: (text: string) => void;
+  onBlur?: () => void
 };
 
-export default function PasswordInput({ placeholder, value, onChangeText }: PasswordInputProps) {
+export default function PasswordInput({ placeholder, value,onBlur, onChangeText }: PasswordInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
@@ -18,8 +18,10 @@ export default function PasswordInput({ placeholder, value, onChangeText }: Pass
       <TextInput
         style={styles.input}
         placeholder={placeholder}
+        placeholderTextColor="#999"
         value={value}
         onChangeText={onChangeText}
+        onBlur={onBlur}
         secureTextEntry={!isPasswordVisible}
       />
       <TouchableOpacity
@@ -28,10 +30,12 @@ export default function PasswordInput({ placeholder, value, onChangeText }: Pass
       >
         <Feather
           name={isPasswordVisible ? 'eye' : 'eye-off'}
-          size={20}
+          size={22}
           color="#666"
         />
       </TouchableOpacity>
+
+
     </View>
   );
 }

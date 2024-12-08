@@ -1,19 +1,24 @@
-import React from 'react';
-import { TextInput, TextInputProps, StyleSheet } from 'react-native';
+import React, { forwardRef } from 'react';
+import { TextInput, View, Text, TextInputProps } from 'react-native';
 import styles from './styles';
 
 interface InputProps extends TextInputProps {
-  style?: any;
+  title: string;
+  error?: string;
 }
 
-export default function Input({ placeholder, secureTextEntry, value, onChangeText, style }: InputProps) {
+const Input = forwardRef<TextInput, InputProps>(({ title, error, ...props }, ref) => {
   return (
-    <TextInput
-      style={[styles.input, style]}
-      placeholder={placeholder}
-      secureTextEntry={secureTextEntry}
-      value={value}
-      onChangeText={onChangeText}
-    />
+    <View >
+      <Text >{title}</Text>
+      <TextInput
+        style={[styles.input, error ? styles.inputError : null]}
+        {...props}
+        ref={ref} 
+      />
+      {error && <Text style={styles.error}>{error}</Text>}
+    </View>
   );
-}
+});
+
+export default Input;

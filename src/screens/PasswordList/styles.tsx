@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     bottom: 20,
-    backgroundColor: '#4a90e2',
+    backgroundColor: '#4B3CD6',
     width: 60,
     height: 60,
     borderRadius: 30,
@@ -27,6 +27,26 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 24,
   },
+  containerSearch: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f1f1f1',
+    borderRadius: 8,
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    marginVertical: 10,
+    height: 45,
+  },
+  
+  searchIcon: {
+    marginLeft: 8,
+  },
+  
+  inputSearch: {
+    flex: 1,
+    fontSize: 18,
+  },
+  
 });
 
 export default styles;

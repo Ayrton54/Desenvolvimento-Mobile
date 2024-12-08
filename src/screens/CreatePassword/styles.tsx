@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 5,
   },
+  errorInputContainer: { borderColor: 'red', }, 
+  errorText: { color: 'red', fontSize: 12, marginTop: 4,},
  
 });
 
