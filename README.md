@@ -45,12 +45,31 @@ Certifique-se de ter as seguintes ferramentas instaladas na sua máquina:
    git clone https://github.com/seu-usuario/KeyMaster.git
    cd KeyMaster
    
-# Instale as Dependências
+  ###  Instale as dependências:
 
-## Utilize npm ou yarn para instalar os pacotes necessários:
+    npm install
 
-### npm install ou yarn install
+   ### Inicie o projeto com o Expo:
 
-### expo start
+    expo start
+
+Abra o aplicativo Expo Go no seu dispositivo (ou utilize um emulador) e leia o QR Code para ver o app em ação.
+
+## Uso
+
+- Cadastro de usuário: Ao iniciar o aplicativo, crie uma conta para começar a usar o Key Master.
+- Adicionar senha: No painel principal, clique em "+" e insira os detalhes (nome, usuário, senha).
+- Organização e busca: As senhas podem ser pesquisadas pelo nome.
+
+## Segurança
+
+- Criptografia: Todas as senhas são armazenadas de forma criptografada.
+- Autenticação: Utilize biometria (se disponível) ou PIN para adicionar uma camada de segurança ao aplicativo.
+- Armazenamento seguro: Safe Key usa o Expo Secure Store para garantir a segurança dos dados sensíveis.
+
+
+## Licença
+
+Esse projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
 
