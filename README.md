@@ -42,7 +42,7 @@ Certifique-se de ter as seguintes ferramentas instaladas na sua máquina:
 1. **Clone o Repositório**
 
    ```bash
-   git clone https://github.com/seu-usuario/KeyMaster.git
+   git clone https://github.com/Ayrton54/Desenvolvimento-Mobile.git
    cd KeyMaster
    
   ###  Instale as dependências:
