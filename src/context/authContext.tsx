@@ -1,6 +1,6 @@
-import AsyncStorage from "@react-native-async-storage/async-storage"
-import { createContext, useContext, useEffect, useState } from "react"
-import { Alert } from "react-native"
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createContext, useContext, useEffect, useState } from "react";
+import { Alert } from "react-native";
 
 type userType = {
     username: string,
@@ -41,18 +41,27 @@ const AuthContext = createContext<AuthContextType>({
     logout: async () => { },
     resetData: async () => { },
     editProfile: async () => { },
-})
+});
 
 function AuthProvider({ children }: any) {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [isFirstAccess, setIsFirstAccess] = useState<boolean>(true);
     const [keepConnected, setKeepConnected] = useState<boolean>(false);
 
-    const [user, setUser] = useState<userType>({ username: "", password: "", name: "" });
+    const [user, setUser ] = useState<userType>({ username: "", password: "", name: "" });
 
     const loadStoredData = async () => {
-        // código para resgatar as informações do Local Storage
-    } 
+        try {
+            const userStored = await AsyncStorage.getItem("@keymaster-user"); // Alterado para KeyMaster
+            if (userStored) {
+                const user = JSON.parse(userStored);
+                setUser (user);
+                setIsAuthenticated(true);
+            }
+        } catch (error) {
+            console.error("Erro ao carregar dados armazenados:", error);
+        }
+    };
 
     useEffect(() => {
         loadStoredData();
@@ -60,64 +69,69 @@ function AuthProvider({ children }: any) {
 
     const login = async ({ username, password, keepConnected }: loginType) => {
         try {
-            const userStored = await AsyncStorage.getItem("@safekey-user");
+            const userStored = await AsyncStorage.getItem("@keymaster-user"); // Alterado para KeyMaster
 
             if (userStored) {
                 const user = JSON.parse(userStored);
 
                 if (username === user.username && password === user.password) {
-                    setUser(user);
+                    setUser (user);
                     setKeepConnected(keepConnected);
                     setIsAuthenticated(true);
 
-                    await AsyncStorage.setItem("@safekey-keepConnected", JSON.stringify(keepConnected));
+                    if (keepConnected) {
+                        await AsyncStorage.setItem("@keymaster-keepConnected", 'true'); // Alterado para KeyMaster
+                    } else {
+                        await AsyncStorage.removeItem("@keymaster-keepConnected"); // Alterado para KeyMaster
+                    }
                 } else {
                     Alert.alert("Login", "Usuário ou senha não coincidem.");
                 }
-            } else{
-                Alert.alert("Login", "Faça um cadastro primeiro.")
+            } else {
+                Alert.alert("Login", "Faça um cadastro primeiro.");
             }
-
         } catch (e) {
             Alert.alert("Login", "Não foi possível logar. Tente novamente mais tarde.");
         }
-    }
+    };
 
     const register = async () => {
-
+        // Implementar a lógica de registro
     }
 
     const forgotPassword = async () => {
-
+        // Implementar a lógica de recuperação de senha
     }
 
     const logout = async () => {
-
-    }
+        setUser ({ username: "", password: "", name: "" });
+        setIsAuthenticated(false);
+        await AsyncStorage.removeItem("@keymaster-user"); // Alterado para KeyMaster
+        await AsyncStorage.removeItem("@keymaster-keepConnected"); // Alterado para KeyMaster
+    };
 
     const resetData = async () => {
-
+        // Implementar a lógica de reset de dados
     }
 
     const editProfile = async () => {
-
+        // Implementar a lógica de edição de perfil
     }
 
     return (
         <AuthContext.Provider
-            value={{ 
-                isAuthenticated, 
-                isFirstAccess, 
-                keepConnected, 
-                user, 
-                login, 
-                register, 
-                forgotPassword, 
-                logout, 
+            value={{
+                isAuthenticated,
+                isFirstAccess,
+                keepConnected,
+                user,
+                login,
+                register,
+                forgotPassword,
+                logout,
                 resetData,
                 editProfile
             }}
-
         >
             {children}
         </AuthContext.Provider>

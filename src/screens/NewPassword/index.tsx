@@ -86,6 +86,7 @@ export default function NewPasswordScreen() {
             />
 
             <PasswordInput
+              title="Senha"
               placeholder="Senha"
               onChangeText={handleChange('password')}
               value={values.password}

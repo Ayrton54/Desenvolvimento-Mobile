@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   containerSearch: {
+    marginTop: 90,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#f1f1f1',
@@ -45,6 +46,22 @@ const styles = StyleSheet.create({
   inputSearch: {
     flex: 1,
     fontSize: 18,
+  },
+
+  logoutButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    backgroundColor:'#4B3CD6',
+    width: 60,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#fff',
+    textAlign: 'center',
+    borderRadius: 5,
+    fontSize: 18,
+    fontWeight: 500,
   },
   
 });

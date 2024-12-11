@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '100%',
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
@@ -40,6 +40,10 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 12,
     marginTop: 4,
+  },
+  titulo: {
+    fontSize: 16, 
+    marginBottom: 5, 
   },
 
 });

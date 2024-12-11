@@ -84,6 +84,7 @@ export default function CreatePasswordScreen() {
               error={touched.username ? errors.username : undefined}
             />
             <PasswordInput
+              title='Nova Senha'
               placeholder="Nova Senha"
               value={values.password}
               onChangeText={handleChange('password')}
@@ -91,6 +92,7 @@ export default function CreatePasswordScreen() {
               error={touched.password ? errors.password : undefined}
             />
             <PasswordInput
+              title='Confirmar Nova Senha'
               placeholder="Confirmar Nova Senha"
               value={values.confirmPassword}
               onChangeText={handleChange('confirmPassword')}

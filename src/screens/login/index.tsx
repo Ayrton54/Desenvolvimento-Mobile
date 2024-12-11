@@ -18,7 +18,17 @@ type loginParamsList = NativeStackNavigationProp<RoutesParams, 'Login'>;
 
 export default function LoginScreen() {
   const navigation = useNavigation<loginParamsList>();
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth(); // Obtenha isAuthenticated do contexto
+
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      const keepConnected = await AsyncStorage.getItem('@loginCredentials-keepConnected');
+      if (isAuthenticated || keepConnected === 'true') {
+        navigation.navigate('PasswordList');
+      }
+    };
+    checkAuthentication();
+  }, [isAuthenticated, navigation]); // Adicione navigation como dependência
 
   const saveCredentials = async (values: { username: string; password: string; keepConnected: boolean }) => {
     try {
@@ -44,7 +54,7 @@ export default function LoginScreen() {
     }
   };
 
-  const validateUser = async (username: string, password: string) => {
+  const validateUser  = async (username: string, password: string) => {
     const user = keys.find((user) => user.username === username && user.password === password);
     if (user) return true;
 
@@ -62,8 +72,8 @@ export default function LoginScreen() {
   };
 
   const onSubmitting = async (values: { username: string; password: string; keepConnected: boolean }) => {
-    const isValidUser = await validateUser(values.username, values.password);
-    if (!isValidUser) {
+    const isValidUser  = await validateUser (values.username, values.password);
+    if (!isValidUser ) {
       Alert.alert('Erro', 'Usuário ou senha inválidos.');
       return;
     }
@@ -75,7 +85,6 @@ export default function LoginScreen() {
     } catch (error) {
       Alert.alert('Erro ao logar:', error instanceof Error ? error.message : 'Erro desconhecido');
     }
-    
   };
 
   return (
@@ -107,7 +116,7 @@ export default function LoginScreen() {
               />
 
               <PasswordInput
-                
+                title='Senha'
                 placeholder="Sua senha"
                 value={values.password}
                 onChangeText={handleChange('password')}

@@ -7,6 +7,7 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { RoutesParams } from '../../navigation/RoutesParams';
 import keys from '../../mock/Keys';
+import { useAuth } from '../../context/authContext';
 
 type PasswordListScreen = NativeStackNavigationProp<RoutesParams, 'PasswordList'>;
 
@@ -14,6 +15,12 @@ export default function PasswordListScreen() {
   const navigation = useNavigation<PasswordListScreen>();
   const [searchText, setSearchText] = useState('');
   const [passwords, setPasswords] = useState([...keys]);
+  const { logout } = useAuth();
+  const handleLogout = async () => {
+    await logout(); // Chame a função de logout do contexto de autenticação
+    navigation.navigate('Login'); // Redirecione para a tela de login
+  };
+
 
   useEffect(() => {
     const loadPasswords = async () => {
@@ -31,6 +38,10 @@ export default function PasswordListScreen() {
 
   return (
     <View style={styles.container}>
+    
+    <TouchableOpacity onPress={handleLogout}>
+  <Text style={styles.logoutButton}>Logout</Text>
+</TouchableOpacity>
       <View style={styles.containerSearch}>
         <TextInput
           style={styles.inputSearch}
@@ -40,6 +51,7 @@ export default function PasswordListScreen() {
         />
         <Feather name="search" size={20} color="#000" style={styles.searchIcon} />
       </View>
+      
       <FlatList
         data={filteredPasswords}
         keyExtractor={(item) => item.id.toString()}
@@ -49,6 +61,7 @@ export default function PasswordListScreen() {
           </TouchableOpacity>
         )}
       />
+      
       <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('NewPassword')}>
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
